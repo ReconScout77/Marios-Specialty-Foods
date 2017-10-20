@@ -27,6 +27,11 @@ namespace MarioSpecialtyFoods.Controllers
             }
         }
 
+        public ViewResult Index()
+        {
+            return View(reviewRepo.Reviews.ToList());
+        }
+
 		public IActionResult Details(int id)
 		{
 			Review thisReview = reviewRepo.Reviews.FirstOrDefault(x => x.ReviewId == id);
