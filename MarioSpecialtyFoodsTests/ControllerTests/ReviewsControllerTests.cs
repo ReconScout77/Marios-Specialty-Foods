@@ -10,6 +10,7 @@ using System;
 
 namespace MarioSpecialtyFoodsTests
 {
+    [TestClass]
     public class ReviewsControllerTests : IDisposable
     {
 		EFReviewRepository db = new EFReviewRepository(new TestDbContext());

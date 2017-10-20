@@ -46,8 +46,15 @@ namespace MarioSpecialtyFoods.Controllers
 		[HttpPost]
         public IActionResult Create(Review review)
         {
-            reviewRepo.Save(review);
-            return RedirectToAction("Details", "Products", new{ id = review.ProductId });
+            if (review.CheckValid())
+            {
+                reviewRepo.Save(review);
+                return RedirectToAction("Details", "Products", new { id = review.ProductId });
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
 		}
 
 		public IActionResult Edit(int id)
@@ -59,8 +66,15 @@ namespace MarioSpecialtyFoods.Controllers
 		[HttpPost]
         public IActionResult Edit(Review review)	
         {
-            reviewRepo.Edit(review);
-            return RedirectToAction("Details", "Products", new{ id = review.ProductId });
+            if (review.CheckValid())
+            {
+                reviewRepo.Edit(review);
+                return RedirectToAction("Details", "Products", new { id = review.ProductId });
+            }
+			else
+			{
+				return RedirectToAction("Error");
+			}
 		}
 
 		public IActionResult Delete(int id)
@@ -77,5 +91,10 @@ namespace MarioSpecialtyFoods.Controllers
 			reviewRepo.Remove(thisReview);
             return RedirectToAction("Details", "Products", new{ id = thisProductId });
 		}
+
+        public ViewResult Error(Review review)
+        {
+            return View(review);
+        }
     }
 }
