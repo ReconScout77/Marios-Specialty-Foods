@@ -8,9 +8,10 @@ using MarioSpecialtyFoods.Models;
 namespace MarioSpecialtyFoods.Migrations
 {
     [DbContext(typeof(MarioSpecialtyFoodsContext))]
-    partial class MarioSpecialtyFoodsContextModelSnapshot : ModelSnapshot
+    [Migration("20171027190342_UserAuthAdded")]
+    partial class UserAuthAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");

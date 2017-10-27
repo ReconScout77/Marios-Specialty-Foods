@@ -9,10 +9,10 @@ namespace MarioSpecialtyFoods.Models
 		public virtual DbSet<Product> Products { get; set; }
 		public virtual DbSet<Review> Reviews { get; set; }
 
-        public MarioSpecialtyFoodsContext(DbContextOptions options) : base(options)
-        {
+        //public MarioSpecialtyFoodsContext(DbContextOptions options) : base(options)
+        //{
             
-        }
+        //}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		=> optionsBuilder.UseMySql(@"Server=localhost;Port=8889;database=mariospecialtyfoods;uid=root;pwd=root;");
