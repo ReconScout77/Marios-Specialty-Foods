@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MarioSpecialtyFoods.Models.Product
+
+<h2>@Html.DisplayFor(modelProduct => Model.ProductName)</h2>
+<hr />
+
+@Html.DisplayFor(modelProduct => Model.Cost)
+@Html.DisplayFor(modelProduct => Model.CountryOfOrigin)
+
+@Html.ActionLink("Back to Products", "Index")
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Edit this Product", "Edit", new {id = Model.ProductId})
+}
+

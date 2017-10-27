@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MarioSpecialtyFoods.Models.Product
+
+<h2>Edit @Html.DisplayFor(model => Model.ProductName)</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ProductId)
+
+    @Html.LabelFor(model => model.ProductName)
+    @Html.EditorFor(model => model.ProductName)
+
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+
+    @Html.LabelFor(model => model.CountryOfOrigin)
+    @Html.EditorFor(model => model.CountryOfOrigin)
+
+    @Html.LabelFor(model => model.Featured)
+    @Html.EditorFor(model => model.Featured)
+
+    <input type="submit" value="Edit" />
+}
+@Html.ActionLink("Back to Product Details", "Details", new {id = Model.ProductId})
