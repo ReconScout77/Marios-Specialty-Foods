@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MarioSpecialtyFoods.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using System.Security.Claims
+
+<h2>All Products</h2>
+<hr />
+
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>@Html.ActionLink(product.ProductName, "Details")    $@Html.DisplayFor(modelProduct => product.Cost)</li>
+    }
+</ul>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Create new", "Create")
+}

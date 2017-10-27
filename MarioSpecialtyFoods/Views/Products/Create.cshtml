@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MarioSpecialtyFoods.Models.Product
+
+<h2>Add a new Product</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.ProductName)
+    @Html.EditorFor(model => model.ProductName)
+
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+
+    @Html.LabelFor(model => model.CountryOfOrigin)
+    @Html.EditorFor(model => model.CountryOfOrigin)
+
+    <input type="submit" value="Create" />
+}
+@Html.ActionLink("Back to Products Index", "Index")
