@@ -10,12 +10,19 @@
 <h2>All Products</h2>
 <hr />
 
-<ul>
+<div class="card-deck">
     @foreach (var product in Model)
     {
-        <li>@Html.ActionLink(product.ProductName, "Details", new {id = product.ProductId})    $@Html.DisplayFor(modelProduct => product.Cost)</li>
+	    <div class="card text-center">
+          <div class="card-header">
+            <h3>@Html.ActionLink(product.ProductName, "Details", new {id = product.ProductId})</h3>
+          </div>
+          <div class="card-block">
+            <h4 class="card-text">$@Html.DisplayFor(modelProduct => product.Cost)</h4>
+          </div>
+        </div>
     }
-</ul>
+</div>
 
 @if (User.Identity.IsAuthenticated)
 {

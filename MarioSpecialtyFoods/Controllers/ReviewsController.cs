@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using MarioSpecialtyFoods.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +16,12 @@ namespace MarioSpecialtyFoods.Controllers
     public class ReviewsController : Controller
     {
         private IReviewRepository reviewRepo;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReviewsController(IReviewRepository thisRepo = null)
+        public ReviewsController(UserManager<ApplicationUser> userManager,IReviewRepository thisRepo = null)
         {
+            _userManager = userManager;
+
             if (thisRepo == null)
             {
                 this.reviewRepo = new EFReviewRepository();
@@ -77,12 +82,14 @@ namespace MarioSpecialtyFoods.Controllers
 			}
 		}
 
+        [Authorize]
 		public IActionResult Delete(int id)
 		{
 			Review thisReview = reviewRepo.Reviews.FirstOrDefault(x => x.ReviewId == id);
 			return View(thisReview);
 		}
 
+        [Authorize]
 		[HttpPost, ActionName("Delete")]
 		public IActionResult DeleteConfirmed(int id)
 		{
@@ -96,5 +103,14 @@ namespace MarioSpecialtyFoods.Controllers
         {
             return View(review);
         }
-    }
+
+		//[HttpPost]
+		//public IActionResult CreateReview(string newAuthor, string newContent, int newRating)
+		//{
+		//	Review newReview = new Review(newAuthor, newContent, newRating, 1);
+		//	reviewRepo.Save(newReview);
+		//	return Json(newReview);
+		//}
+
+	}
 }

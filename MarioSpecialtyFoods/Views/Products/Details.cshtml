@@ -2,18 +2,49 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
 @model MarioSpecialtyFoods.Models.Product
 
 <h2>@Html.DisplayFor(modelProduct => Model.ProductName)</h2>
 <hr />
 
-@Html.DisplayFor(modelProduct => Model.Cost)
-@Html.DisplayFor(modelProduct => Model.CountryOfOrigin)
+<h3>$@Html.DisplayFor(modelProduct => Model.Cost)</h3>
+<h4>@Html.DisplayFor(modelProduct => Model.CountryOfOrigin)</h4>
 
-@Html.ActionLink("Back to Products", "Index")
+<p>@Html.ActionLink("Back to Products", "Index")</p>
 
 @if (User.Identity.IsAuthenticated)
 {
-    @Html.ActionLink("Edit this Product", "Edit", new {id = Model.ProductId})
+    <p>@Html.ActionLink("Edit this Product", "Edit", new {id = Model.ProductId})</p>
 }
 
+@foreach (var review in Model.Reviews)
+{
+    <div class="card card-outline-primary mb-3 text-center">
+      <div class="card-block">
+        <blockquote class="card-blockquote">
+		  <header>@Html.DisplayFor(modelProduct => review.Rating)/5</header>
+          <p>@Html.DisplayFor(modelProduct => review.ContentBody)</p>
+          <footer>@Html.DisplayFor(modelProduct => review.Author)</footer>
+        </blockquote>
+      </div>
+	    @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Delete", "Delete", "Reviews", new {id = review.ReviewId})
+        }
+    </div>
+
+}
+
+<div id="added-review"></div>
+
+<form action="CreateReview" class="create-review">
+    <label for="newAuthor">Author: </label>
+    <input type="text" name="newAuthor" />
+    <label for="newContent">Review: </label>
+    <input type="textbox" name="newContent" />
+    <label for="newRating">Rating: </label>
+    <input type="number" name="newRating" />
+    @Html.HiddenFor(modelProduct => Model.ProductId)
+    <button type="submit">Submit</button>
+</form>
