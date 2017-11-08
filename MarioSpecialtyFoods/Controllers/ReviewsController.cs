@@ -104,13 +104,13 @@ namespace MarioSpecialtyFoods.Controllers
             return View(review);
         }
 
-		//[HttpPost]
-		//public IActionResult CreateReview(string newAuthor, string newContent, int newRating)
-		//{
-		//	Review newReview = new Review(newAuthor, newContent, newRating, 1);
-		//	reviewRepo.Save(newReview);
-		//	return Json(newReview);
-		//}
+		[HttpPost]
+		public IActionResult CreateReview(string newAuthor, string newContent, int newRating)
+		{
+			Review newReview = new Review(newAuthor, newContent, newRating, 1);
+			reviewRepo.Save(newReview);
+			return Json(newReview);
+		}
 
 	}
 }

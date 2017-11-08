@@ -35,7 +35,4 @@
     <Compile Remove="Controllers\ProductController.cs" />
     <Compile Remove="Models\Repositories\f.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="README.md" />
-  </ItemGroup>
 </Project>

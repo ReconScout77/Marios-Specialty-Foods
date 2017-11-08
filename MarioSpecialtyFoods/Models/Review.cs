@@ -15,14 +15,19 @@ namespace MarioSpecialtyFoods.Models
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
-        //public Review(string author, string content, int rating, int productId, int id = 0)
-        //{
-        //    ReviewId = id;
-        //    Author = author;
-        //    ContentBody = content;
-        //    Rating = rating;
-        //    ProductId = productId;
-        //}
+        public Review()
+        {
+            
+        }
+
+        public Review(string author, string content, int rating, int productId, int id = 0)
+        {
+            ReviewId = id;
+            Author = author;
+            ContentBody = content;
+            Rating = rating;
+            ProductId = productId;
+        }
 
 		public bool CheckValid()
 		{
